@@ -100,8 +100,8 @@ function Search() {
         {std
           .filter(
             (f) =>
-              f.name.toLowerCase().includes(search) ||
-              f.rollNumber.toLowerCase().includes(search) ,
+              f.name.toLowerCase().includes(search.toLowerCase()) ||
+              f.rollNumber.toLowerCase().includes(search.toLowerCase) ,
           )
           .map((s) => {
             return (
