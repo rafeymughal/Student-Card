@@ -1,0 +1,315 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --olive: #556B2F;
+    --olive-dark: #344328;
+    --olive-light: #E8EBD9;
+    --cream: #F7F4E9;
+    --white: #FFFDF5;
+    --gold: #B69B59;
+    --text: #344328;
+    --muted: #777966;
+    --border: #DCDCCB;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* Main heading */
+#root > div > h1:first-child {
+    text-align: center;
+    margin: 35px 15px 25px;
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--olive-dark);
+}
+
+/* Search heading */
+#root > div > h1:nth-child(2) {
+    text-align: center;
+    margin: 20px 12px;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+/* Search input */
+#root > div > input {
+    display: block;
+    width: 90%;
+    max-width: 650px;
+    margin: 25px auto;
+    padding: 16px 20px;
+    background: var(--white);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    font: inherit;
+    outline: none;
+    box-shadow: 0 4px 15px #34432808;
+    transition: 0.25s ease;
+}
+
+input {
+    font-family: inherit;
+}
+
+input::placeholder {
+    color: #969785;
+}
+
+input:focus {
+    border-color: var(--olive);
+    box-shadow: 0 0 0 4px #556B2F18;
+}
+
+/* Main container */
+.main-container {
+    width: 92%;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 35px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: 0 15px 45px #3443280D;
+}
+
+/* Add-player form */
+.inline {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.inline br {
+    display: none;
+}
+
+.inline input {
+    width: 100%;
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+    transition: 0.25s ease;
+}
+
+.inline input:focus {
+    border-color: var(--olive);
+    background: var(--white);
+    box-shadow: 0 0 0 3px #556B2F15;
+}
+
+/* General buttons */
+button {
+    padding: 13px 20px;
+    margin: 0 10px 22px 0;
+    border: 1px solid var(--olive);
+    border-radius: 11px;
+    background: var(--olive);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+button:hover {
+    background: var(--olive-dark);
+    border-color: var(--olive-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px #34432820;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Refresh button */
+button:nth-of-type(2) {
+    background: var(--white);
+    color: var(--olive);
+    border-color: var(--border);
+}
+
+button:nth-of-type(2):hover {
+    background: var(--olive-light);
+    border-color: var(--olive);
+    box-shadow: none;
+}
+
+/* Player cards */
+.right-side {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 20px;
+}
+
+.right-side > div {
+    position: relative;
+    overflow: hidden;
+    padding: 25px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 5px 18px #34432808;
+    transition: transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+    animation: appear 0.4s ease both;
+}
+
+/* Olive accent on card */
+.right-side > div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        var(--olive),
+        #8B9A58,
+        var(--gold)
+    );
+}
+
+.right-side > div:hover {
+    transform: translateY(-6px);
+    border-color: #9DA87D;
+    box-shadow: 0 15px 30px #34432812;
+}
+
+/* Player name */
+.right-side h1 {
+    margin: 7px 0 14px;
+    font-size: 21px;
+    line-height: 1.4;
+    font-weight: 800;
+    color: var(--olive-dark);
+    overflow-wrap: anywhere;
+}
+
+/* Player quality badge */
+.right-side h2 {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 11px;
+    border-radius: 8px;
+    background: var(--olive-light);
+    color: var(--olive);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Run rate */
+.right-side h3 {
+    margin-bottom: 22px;
+    color: var(--olive);
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.right-side h3::before {
+    content: "RUN RATE";
+    display: block;
+    margin-bottom: 7px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Remove player button */
+.right-side button {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: 0;
+    padding: 12px;
+    background: #F5EAE4;
+    color: #995642;
+    border: 1px solid #E8D3C8;
+}
+
+.right-side button:hover {
+    background: #995642;
+    color: white;
+    border-color: #995642;
+    box-shadow: none;
+}
+
+/* Smooth entrance */
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+    .right-side {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .main-container {
+        padding: 25px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .main-container {
+        width: 94%;
+        margin: 20px auto;
+        padding: 18px;
+        border-radius: 17px;
+    }
+
+    .inline {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .right-side {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .right-side > div {
+        padding: 22px;
+    }
+
+    button {
+        padding: 12px 14px;
+        margin-right: 5px;
+    }
+}
