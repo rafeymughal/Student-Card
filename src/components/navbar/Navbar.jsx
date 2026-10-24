@@ -1,12 +1,21 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { FaBars, FaGraduationCap, FaHouse, FaUser, FaUserPlus, FaXmark } from "react-icons/fa6";
+import { NavLink, useNavigate } from "react-router-dom";
+import { FaArrowRightFromBracket, FaBars, FaGraduationCap, FaHouse, FaUser, FaUserPlus, FaXmark } from "react-icons/fa6";
+import { useAuth } from "../../auth/AuthContext";
 import "./Navbar.css";
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
 
     const closeMenu = () => setMenuOpen(false);
+
+    const handleLogout = () => {
+        logout();
+        closeMenu();
+        navigate("/login");
+    };
 
     return (
         <header className="students-navbar">
@@ -33,14 +42,29 @@ function Navbar() {
                     <FaHouse aria-hidden="true" />
                     <span>Students</span>
                 </NavLink>
-                <NavLink to="/login" onClick={closeMenu}>
-                    <FaUser aria-hidden="true" />
-                    <span>Login</span>
-                </NavLink>
-                <NavLink to="/signup" className="students-navbar-signup" onClick={closeMenu}>
-                    <FaUserPlus aria-hidden="true" />
-                    <span>Sign up</span>
-                </NavLink>
+                {user ? (
+                    <>
+                        <span className="students-navbar-user">
+                            <FaUser aria-hidden="true" />
+                            <span>{user.name}</span>
+                        </span>
+                        <button className="students-navbar-logout" type="button" onClick={handleLogout}>
+                            <FaArrowRightFromBracket aria-hidden="true" />
+                            <span>Log out</span>
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <NavLink to="/login" onClick={closeMenu}>
+                            <FaUser aria-hidden="true" />
+                            <span>Login</span>
+                        </NavLink>
+                        <NavLink to="/signup" className="students-navbar-signup" onClick={closeMenu}>
+                            <FaUserPlus aria-hidden="true" />
+                            <span>Sign up</span>
+                        </NavLink>
+                    </>
+                )}
             </nav>
         </header>
     );
